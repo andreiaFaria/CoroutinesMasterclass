@@ -13,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.plcoding.coroutinesmasterclass.sections.coroutine_basics.fetchData
 import com.plcoding.coroutinesmasterclass.ui.theme.CoroutinesMasterclassTheme
+import com.plcoding.coroutinesmasterclass.util.BirdViewModel
 import com.plcoding.coroutinesmasterclass.util.RotatingBoxScreen
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
@@ -28,7 +29,7 @@ class MainActivity : ComponentActivity() {
         
         setContent {
             CoroutinesMasterclassTheme {
-                RotatingBoxScreen()
+                RotatingBoxScreen(birdViewModel = BirdViewModel())
             }
         }
     }
