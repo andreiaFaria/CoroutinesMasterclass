@@ -17,6 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.unit.dp
+import kotlinx.coroutines.cancelChildren
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -36,23 +37,29 @@ fun RotatingBoxScreen(modifier: Modifier = Modifier) {
 
     LaunchedEffect(Unit) {
         scope.launch {
-            repeat(4){
+            while (true){
                 println("Coo")
                 delay(1000)
             }
         }
         scope.launch {
-            repeat(4){
+            while (true) {
                 println("Caw")
                 delay(2000)
             }
         }
         scope.launch {
-            repeat(4){
+            while (true) {
                 println("Chirp")
                 delay(3000)
             }
         }
+        scope.launch {
+            delay(10000)
+            println("Window closed")
+            scope.coroutineContext.cancelChildren()
+        }
+
     }
 
 
