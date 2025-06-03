@@ -2,12 +2,14 @@ package com.plcoding.coroutinesmasterclass.util
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.CoroutineName
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.cancelChildren
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.newCoroutineContext
 
 class BirdViewModel: ViewModel() {
 
@@ -19,7 +21,7 @@ class BirdViewModel: ViewModel() {
             _selectedBird.collect(){
                 this.coroutineContext.cancelChildren()
                 if (selectedBird.value != BirdType.NoBird){
-                    birdSinging(selectedBird.value.bird.voice, this)
+                    birdSinging(selectedBird.value, this)
                 }else {
                     println("Any bird selected!")
                 }
@@ -32,10 +34,11 @@ class BirdViewModel: ViewModel() {
     }
 
 
-    private suspend fun birdSinging(birdSong: String, scope: CoroutineScope){
-        scope.launch {
+    private suspend fun birdSinging(birdSong: BirdType, scope: CoroutineScope){
+        scope.launch(CoroutineName(selectedBird.value.bird.name)) {
             while (true){
-                println(birdSong)
+                println("Coroutine name: ${this.coroutineContext[CoroutineName]?.name}")
+                println(birdSong.bird.voice)
                 delay(1000)
             }
         }

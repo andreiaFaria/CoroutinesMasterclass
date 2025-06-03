@@ -61,13 +61,13 @@ fun RotatingBoxScreen(
 
             Row {
                 Button(onClick = { birdViewModel.setBirdSelected(BirdType.Coo) }) {
-                    Text(text = "Coo")
+                    Text(text = BirdType.Coo.bird.name)
                 }
                 Button(onClick = { birdViewModel.setBirdSelected (BirdType.Caw) }) {
-                    Text(text = "Caw")
+                    Text(text = BirdType.Caw.bird.name)
                 }
                 Button(onClick = { birdViewModel.setBirdSelected( BirdType.Chirp)}) {
-                    Text(text = "Chirp")
+                    Text(text = BirdType.Chirp.bird.name)
                 }
                 Button(onClick = { birdViewModel.setBirdSelected( BirdType.NoBird) }) {
                     Text(text = "No Bird")
@@ -83,9 +83,9 @@ fun RotatingBoxScreen(
 
 
 sealed class BirdType(val bird: Bird){
-    data object Coo : BirdType(Bird(name = "Coo", voice = "Cooing", color = Color.Gray))
-    data object Caw : BirdType(Bird(name = "Caw", voice = "Cawing", color = Color.Black))
-    data object Chirp : BirdType(Bird(name = "Chirp", voice = "Chirping", color = Color.Yellow))
+    data object Coo : BirdType(Bird(name = "Tweety", voice = "Cooing", color = Color.Gray))
+    data object Caw : BirdType(Bird(name = "Zazu", voice = "Cawing", color = Color.Black))
+    data object Chirp : BirdType(Bird(name = "Woodtock", voice = "Chirping", color = Color.Yellow))
     data object NoBird: BirdType(Bird(name = "NoBird", voice = "sh sh sh", color = Color.Red))
 }
 
